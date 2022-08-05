@@ -29,27 +29,19 @@ public class GetEarthquakeData{
 		.when()
 		.get(uri)
 		.then()
-		.log()
-		.all()
 		.extract()
 		.response();
 		
 		assertEquals(response.jsonPath().getString("features[1].properties.title"), "M 4.3 - 7 km ENE of Sh?h?b?d, India");
-		System.out.println(response.jsonPath().getList("features"));
-		String json = response.jsonPath().getString("features..properties.title");
-		System.out.println(json);
-		JSONObject jObj = new JSONObject();
-		
-//		response.jsonPath().getJsonObject(uri)
-//		List<Object> data = response.jsonPath().getJsonObject("features..properties.title");
-//		String jsonPath = "features..properties.title";
-//		DocumentContext json = JsonPath.parse(response.jsonPath().getList(jsonPath));
-//		List<String> data = json.read(jsonPath);
-//		for(String str: data) {
-//			System.out.println(str);
-//		}
-////		
-//		System.out.println(data);
+//		System.out.println(response.jsonPath().getList("features"));
+//		String json = response.jsonPath().getString("features..properties.title");
+		String obbj = response.jsonPath().getString("features[1]").toString();
+		System.out.println(obbj);
+		String jsonObj = response.asPrettyString();
+		System.out.println(jsonObj);
+//		String[] jArray = response.jsonPath().getJsonObject("features..properties.title");
+//		System.out.println(jArray.length);
+//		
 	}
 	
 }
