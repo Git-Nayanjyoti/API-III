@@ -1,8 +1,9 @@
 package mainTest;
 
 
-import java.util.List;
+import static org.testng.Assert.assertEquals;
 
+import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
@@ -15,7 +16,6 @@ public class GetEarthquakeData{
 	@Test
 	public void getEqdata() {
 		
-		//https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-07-31&endtime=2022-08-05&minlatitude=15&maxlatitude=20&minlongitude=70&maxlongitude=80
 		RestAssured.baseURI = "https://earthquake.usgs.gov";
 		String uri = "/fdsnws/event/1/query&format=geojson"
 				+ "&starttime=2018-07-31"
@@ -31,10 +31,25 @@ public class GetEarthquakeData{
 		.then()
 		.log()
 		.all()
-		.extract().response();
+		.extract()
+		.response();
 		
-		response.jsonPath().getString("$.features..properties.title");
+		assertEquals(response.jsonPath().getString("features[1].properties.title"), "M 4.3 - 7 km ENE of Sh?h?b?d, India");
+		System.out.println(response.jsonPath().getList("features"));
+		String json = response.jsonPath().getString("features..properties.title");
+		System.out.println(json);
+		JSONObject jObj = new JSONObject();
 		
+//		response.jsonPath().getJsonObject(uri)
+//		List<Object> data = response.jsonPath().getJsonObject("features..properties.title");
+//		String jsonPath = "features..properties.title";
+//		DocumentContext json = JsonPath.parse(response.jsonPath().getList(jsonPath));
+//		List<String> data = json.read(jsonPath);
+//		for(String str: data) {
+//			System.out.println(str);
+//		}
+////		
+//		System.out.println(data);
 	}
 	
 }
