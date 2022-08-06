@@ -1,14 +1,17 @@
 package mainTest;
 
 
-import static org.testng.Assert.assertEquals;
+import java.util.List;
 
-import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
+
+import com.google.gson.Gson;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import jsonObjects.MainObject;
+import jsonObjects.features; 
 
 public class GetEarthquakeData{
 	
@@ -32,16 +35,14 @@ public class GetEarthquakeData{
 		.extract()
 		.response();
 		
-		assertEquals(response.jsonPath().getString("features[1].properties.title"), "M 4.3 - 7 km ENE of Sh?h?b?d, India");
-//		System.out.println(response.jsonPath().getList("features"));
-//		String json = response.jsonPath().getString("features..properties.title");
-		String obbj = response.jsonPath().getString("features[1]").toString();
-		System.out.println(obbj);
 		String jsonObj = response.asPrettyString();
-		System.out.println(jsonObj);
-//		String[] jArray = response.jsonPath().getJsonObject("features..properties.title");
-//		System.out.println(jArray.length);
-//		
+		
+		MainObject mainObject = new Gson().fromJson(jsonObj, MainObject.class);
+		List<features> feature = mainObject.features;
+		for(features property: feature) {
+			System.out.println(property.properties.title);
+		}
+
 	}
 	
 }
