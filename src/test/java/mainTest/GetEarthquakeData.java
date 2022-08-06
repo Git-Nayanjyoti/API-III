@@ -2,6 +2,8 @@ package mainTest;
 
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.testng.annotations.Test;
 
@@ -37,10 +39,16 @@ public class GetEarthquakeData{
 		
 		String jsonObj = response.asPrettyString();
 		
+		Pattern pattern = Pattern.compile("(pune|Pune)");
+		Matcher matcher;
 		MainObject mainObject = new Gson().fromJson(jsonObj, MainObject.class);
 		List<features> feature = mainObject.features;
 		for(features property: feature) {
-			System.out.println(property.properties.title);
+			matcher = pattern.matcher(property.properties.title);
+//			System.out.println(property.properties.title);
+			if(matcher.find() == true) {
+				System.out.println("EarthQuake!!!!");
+			}
 		}
 
 	}
