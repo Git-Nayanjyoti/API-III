@@ -4,15 +4,15 @@ import java.util.List;
 
 public class MainObject {
 	public String type;
-	public metadata metadata;
-	public List<features> features;
+	public Metadata metadata;
+	public List<Features> features;
 	public String getType() {
 		return type;
 	}
-	public metadata getMetadata() {
+	public Metadata getMetadata() {
 		return metadata;
 	}
-	public List<features> getFeatures() {
+	public List<Features> getFeatures() {
 		return features;
 	}
 }

@@ -1,6 +1,6 @@
 package jsonObjects;
 
-public class properties {
+public class Properties {
 	public Double time, updated;
 	public Float mag, felt, cdi, dmin, rms;
 	public Integer tsunami, sig, nst, admin, gap;

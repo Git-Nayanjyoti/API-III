@@ -2,7 +2,7 @@ package jsonObjects;
 
 import java.util.List;
 
-public class geometry {
+public class Geometry {
 	public String type;
 	public List<Float> coordinates;
 }

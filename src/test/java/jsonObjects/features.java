@@ -1,7 +1,7 @@
 package jsonObjects;
 
-public class features {
+public class Features {
 	public String type, id;
-	public properties properties;
-	public geometry geometry;
+	public Properties properties;
+	public Geometry geometry;
 }

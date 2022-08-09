@@ -1,6 +1,6 @@
 package jsonObjects;
 
-public class metadata {
+public class Metadata {
 	public String url, title, api;
 	public Integer status, count;
 	public Double generated;

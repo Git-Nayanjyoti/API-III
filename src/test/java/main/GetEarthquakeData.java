@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import com.google.gson.Gson;
 
 import jsonObjects.MainObject;
-import jsonObjects.features;
+import jsonObjects.Features;
 
 public class GetEarthquakeData {
 
@@ -43,16 +43,15 @@ public class GetEarthquakeData {
 		Pattern pattern = Pattern.compile("(pune|Pune)");
 		Matcher matcher;
 		MainObject mainObject = new Gson().fromJson(jsonObj, MainObject.class);
-		List<features> feature = mainObject.features;
-		for (features property : feature) {
+		List<Features> feature = mainObject.features;
+		for (Features property : feature) {
 			matcher = pattern.matcher(property.properties.title);
 			// checking if there is any earthquake in pune to notify the users
 			if (matcher.find() == true) {
-				System.out.println("EarthQuake!!!!");
+				System.out.println("EarthQuake!!!! in " + property.properties.title );
 			}
 		}
 
-		System.out.println("Successfull!! Restarting again");
 
 	}
 
