@@ -43,12 +43,12 @@ public class GetEarthquakeData {
 		Pattern pattern = Pattern.compile("(pune|Pune)");
 		Matcher matcher;
 		MainObject mainObject = new Gson().fromJson(jsonObj, MainObject.class);
-		List<Features> feature = mainObject.features;
-		for (Features property : feature) {
-			matcher = pattern.matcher(property.properties.title);
+		List<Features> features = mainObject.features;
+		for (Features feature : features) {
+			matcher = pattern.matcher(feature.properties.title);
 			// checking if there is any earthquake in pune to notify the users
 			if (matcher.find() == true) {
-				System.out.println("EarthQuake!!!! in " + property.properties.title );
+				System.out.println("EarthQuake!!!! in " + feature.properties.title );
 			}
 		}
 

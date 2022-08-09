@@ -27,7 +27,6 @@ public class Base {
 		
 		//Initializing RestAssured api for getting the earthquake data
 		RestAssured.baseURI = configProperties.getProperty("baseUrl");
-		System.out.println(configProperties.getProperty("baseUrl"));
 		uri = "/fdsnws/event/1/query&format=geojson" 
 		        + "&starttime="+ startTime 
 		        + "&minlatitude=" + configProperties.getProperty("minlatitude") 
